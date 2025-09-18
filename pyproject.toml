@@ -1,0 +1,30 @@
+[project]
+name = "Tuning_sim2"
+version = "0.1.0"
+description = "Analytical project: Tuning_sim2"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas",
+    "numpy",
+    "matplotlib",
+    "seaborn",
+    "plotly",
+    "scikit-learn",
+    "scipy",
+    "networkx",
+    "beautifulsoup4",
+    "arrow",
+    "faker",
+    "jupyter",
+    "ipykernel",
+    "ipython",
+    "xgboost>=3.0.5",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest",
+    "black",
+    "flake8",
+]
