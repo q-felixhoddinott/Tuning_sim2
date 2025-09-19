@@ -28,6 +28,16 @@ Only simulated data - no external data sources required. All data is generated t
 - Install additional dependencies: `uv add package_name`
 - The UV environment includes project /code in the Python path
 
+## Version Control & Repository
+- **GitHub Repository:** https://github.com/q-felixhoddinott/Tuning_sim2
+- **Repository Type:** Public repository for collaborative development and backup
+- **Branch Strategy:** Main branch for stable code, feature branches for development
+- **Commit Protocol:** 
+  - Always run `python clear_notebook_outputs.py notebooks/` before committing
+  - Use descriptive commit messages explaining changes
+  - Stage only source code, documentation, and configuration files
+  - Data and output directories are excluded via .gitignore
+
 ## Module Import Strategy
 Import modules directly without the 'code.' prefix:
 ```python
@@ -54,6 +64,12 @@ Do NOT use 'code.' prefix in imports.
    - Clean outputs after completing analysis work to prevent version control bloat
    - Use the clear_notebook_outputs.py script to remove execution counts and kernel metadata
    - This ensures clean diffs and prevents repository size growth from output data
+
+5. **Version Control Integration**:
+   - All source code, documentation, and configuration files are version controlled
+   - Data and output directories are excluded to prevent repository bloat
+   - Notebook cleaning protocol is critical for clean git history
+   - Regular commits with descriptive messages document project evolution
 
 ## Results and Insights
 This is a restart project - results will be generated as functionality is rebuilt with cleaner code patterns.

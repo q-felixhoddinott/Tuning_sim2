@@ -27,7 +27,7 @@ class Scorecard:
         binary_outcome (pd.Series): Binary outcome (0 or 1) correlated with total_score
     """
     
-    def __init__(self, n_rows: int = 1000, n_features: int = 10, binary_prevalence: float = 0.1, beta = 1,
+    def __init__(self, n_rows: int = 1000, n_features: int = 10, binary_prevalence: float = 0.1, beta: float = 1.0,
                  weights_override: Optional[Union[float, List[float]]] = None, random_state: Optional[int] = None):
         """
         Initialize a Scorecard with simulated data.

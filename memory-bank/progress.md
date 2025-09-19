@@ -28,6 +28,13 @@ Fresh restart of the tuning_sim project with focus on cleaner, less repetitive c
   - Added notebook management guidance to `project_context.md`
   - Script successfully clears outputs and execution counts from all notebooks
   - Ensures clean version control and prevents repository bloat from output data
+- **Successfully set up GitHub repository and version control**
+  - Created public GitHub repository: https://github.com/q-felixhoddinott/Tuning_sim2
+  - Followed critical notebook cleaning protocol before initial commit
+  - Committed all source code, documentation, and configuration files (12 files, 1301 insertions)
+  - Excluded data/ and output/ directories as per .gitignore configuration
+  - Established remote origin and pushed to GitHub with descriptive commit message
+  - Repository properly configured for collaborative development and backup
 
 ## Active Work Items
 - ✅ **Completed: Simple analysis notebook successfully created and tested** (`notebooks/simple_analysis.ipynb`)
@@ -56,6 +63,36 @@ Fresh restart of the tuning_sim project with focus on cleaner, less repetitive c
   - All existing functionality preserved - total scores computed identically
   - Comprehensive testing confirmed full backward compatibility with existing analysis code
   - Memory savings especially beneficial for large datasets with many features
+- ✅ **Completed: Updated ModelingPipeline to use raw scorecard features instead of total_score**
+  - **MAJOR CHANGE**: Models now train on all raw scorecard features instead of aggregated total_score
+  - Modified `_partition_data()` to use `scorecard.features` instead of `total_scores['total_score']`
+  - Updated `_train_models()` to handle multi-dimensional feature arrays directly
+  - Fixed `_calculate_metrics()` to work with DataFrame inputs instead of reshaped single features
+  - Completely rewrote `score_logreg()` and `score_xgb()` methods:
+    - Now accept feature DataFrames, numpy arrays, or lists of lists
+    - Handle both single samples and multiple samples
+    - Automatic conversion and validation of input formats
+    - Maintain backward compatibility for different input types
+  - Updated all docstrings to reflect new behavior using raw features
+  - Fixed type conversion issues in metrics calculation
+  - **Comprehensive testing confirmed all functionality works correctly:**
+    - Pipeline creates successfully with 6 features (350 training, 150 validation samples)
+    - Both models train successfully: LogReg AUC 0.8537, XGBoost AUC 0.8143
+    - Scoring functions work with single samples, multiple samples, and list inputs
+    - All expected functionality preserved while using raw features instead of engineered total_score
+- ✅ **Completed: Added total_score evaluation as third comparison "model"**
+  - **Enhanced evaluation capabilities**: Now evaluates total_score alongside ML models for comparison
+  - Modified `_partition_data()` to consistently split total_scores with features and targets
+  - Updated `_calculate_metrics()` to include total_score AUC and threshold metrics
+  - Added new attributes: `total_scores_train`, `total_scores_val`, `total_score_auc`, `total_score_metrics`
+  - Updated class docstring to document total_score evaluation capabilities
+  - **Results show excellent scorecard performance as expected:**
+    - **Total Score AUC: 0.8890** (best performance - makes sense as outcome was generated from total_score)
+    - **Logistic Regression AUC: 0.8537** (strong performance learning from raw features)
+    - **XGBoost AUC: 0.8143** (good performance but lower than LogReg in this case)
+    - Total Score achieves perfect recall (1.0000) at 50% population threshold
+    - Provides direct comparison of ML models vs original scorecard logic
+    - All three evaluation approaches working correctly and consistently
 - Ready to add additional analysis capabilities as needed for specific tasks
 
 ## Next Steps/TODO List

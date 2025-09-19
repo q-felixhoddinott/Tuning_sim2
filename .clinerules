@@ -84,10 +84,10 @@ TEST
 **CRITICAL WORKFLOW: Always clear notebook outputs before any updates or commits**
 
 NOTEBOOK CLEANING PROTOCOL
-- Before making any changes to notebooks: `python clear_notebook_outputs.py notebooks/`
-- After completing analysis work: `python clear_notebook_outputs.py notebooks/`
+- Before making any changes to notebooks: `python code/clear_notebook_outputs.py notebooks/`
+- After completing analysis work: `python code/clear_notebook_outputs.py notebooks/`
 - Before any version control operations (commits, updates)
-- Use the `clear_notebook_outputs.py` script which:
+- Use the `code/clear_notebook_outputs.py` script which:
   - Clears all code cell outputs and execution counts
   - Removes kernel metadata that causes version control noise
   - Processes all .ipynb files recursively in specified directory
